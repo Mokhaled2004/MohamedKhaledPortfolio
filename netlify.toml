@@ -1,14 +1,7 @@
 [build]
-  # Tell Netlify where the code lives
-  base = "3d-portfolio"
-  
-  # The command to run (using pnpm as per your successful build)
+  base    = "3d-portfolio"
   command = "pnpm run build"
-  
-  # THIS IS THE FIX: Tell Netlify exactly where the build output is
-  # Since the 'base' is 3d-portfolio, this refers to 3d-portfolio/.next
   publish = ".next"
 
 [[plugins]]
-  # This ensures the Next.js helper runs to handle routing
   package = "@netlify/plugin-nextjs"
