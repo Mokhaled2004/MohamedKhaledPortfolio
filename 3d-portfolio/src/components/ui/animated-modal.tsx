@@ -113,20 +113,13 @@ export const ModalBody = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className={cn(
-              "relative z-[10000] w-full max-w-4xl bg-white dark:bg-neutral-950 rounded-3xl shadow-2xl flex flex-col overflow-hidden",
-              "h-fit max-h-[85vh]", // This is the key: h-fit allows it to be smaller, max-h forces scroll
+              "relative z-[10000] w-full max-w-4xl bg-white dark:bg-neutral-950 rounded-3xl shadow-2xl",
+              "h-[90vh] flex flex-col",
               className
             )}
           >
             <CloseIcon />
-            
-            {/* The Actual Scrollable Area */}
-            <div 
-              className="overflow-y-auto overflow-x-hidden flex-1 px-2 md:px-4 py-4" 
-              style={{ WebkitOverflowScrolling: 'touch' }}
-            >
-              {children}
-            </div>
+            {children}
           </motion.div>
         </div>
       )}
@@ -135,11 +128,20 @@ export const ModalBody = ({
 };
 
 export const ModalContent = ({ children, className }: { children: ReactNode; className?: string; }) => (
-  <div className={cn("p-6 md:p-10", className)}>{children}</div>
+  <div 
+    data-lenis-prevent
+    className={cn("overflow-y-auto overflow-x-hidden flex-1 min-h-0 p-4 md:p-10", className)}
+    style={{
+      WebkitOverflowScrolling: 'touch',
+      overscrollBehavior: 'contain'
+    }}
+  >
+    {children}
+  </div>
 );
 
 export const ModalFooter = ({ children, className }: { children: ReactNode; className?: string; }) => (
-  <div className={cn("flex justify-end p-4 bg-neutral-50 dark:bg-neutral-900/50 border-t dark:border-neutral-800", className)}>
+  <div className={cn("flex justify-end items-center gap-3 p-4 bg-neutral-50 dark:bg-neutral-900/50 border-t dark:border-neutral-800 flex-shrink-0", className)}>
     {children}
   </div>
 );

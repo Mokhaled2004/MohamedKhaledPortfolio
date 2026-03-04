@@ -60,21 +60,22 @@ const SlideShow = ({ images }: { images: string[] }) => {
                   )}
                 </AnimatePresence>
               </DialogTrigger>
-              <DialogContent className="min-w-[90vw] h-[90vh] bg-transparent outline-none border-none p-0 m-0">
-                <DialogHeader className="w-full">
-                  {/* <DialogTitle>Are you absolutely sure?</DialogTitle> */}
+              <DialogContent className="max-w-7xl w-[95vw] h-[95vh] bg-black/95 backdrop-blur-md border-none p-0 flex items-center justify-center">
+                <DialogHeader className="sr-only">
+                  <DialogTitle>Image Preview</DialogTitle>
                   <DialogDescription>
                     {image.split("/").pop()}
                   </DialogDescription>
                 </DialogHeader>
-                <Image
-                  src={image}
-                  alt="screenshot"
-                  width={1000}
-                  height={1000}
-                  className="w-full"
-                  style={{ objectFit: "contain", width: "100vw" }}
-                />
+                <div className="relative w-full h-full flex items-center justify-center p-8">
+                  <Image
+                    src={image}
+                    alt="screenshot"
+                    width={1920}
+                    height={1080}
+                    className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
+                  />
+                </div>
               </DialogContent>
             </Dialog>
           </SplideSlide>

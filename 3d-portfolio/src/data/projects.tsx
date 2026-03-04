@@ -38,7 +38,10 @@ import {
   SiThreedotjs,
   SiTypescript,
   SiVuedotjs,
+  SiFastapi, 
+  SiOpenai
 } from "react-icons/si";
+import { Database, Brain, Link2 } from "lucide-react";
 import { TbBrandFramerMotion } from "react-icons/tb";
 
 const BASE_PATH = "/assets/projects-screenshots";
@@ -109,6 +112,17 @@ const PROJECT_SKILLS = {
   gsap: { title: "GSAP", bg: "black", fg: "white", icon: "" },
   framerMotion: { title: "Framer Motion", bg: "black", fg: "white", icon: <TbBrandFramerMotion /> },
   supabase: { title: "Supabase", bg: "black", fg: "white", icon: <SiSupabase /> },
+  fastapi: { title: "FastAPI", bg: "black", fg: "white", icon: <SiFastapi /> },
+  chroma: { 
+      title: "Chroma DB", 
+      bg: "black", 
+      fg: "white", 
+      icon: <Database className="w-4 h-4" /> 
+    },
+  ollama: { title: "Ollama", bg: "black", fg: "white", icon: <Brain className="w-4 h-4" /> },
+  gpt: { title: "GPT-4", bg: "black", fg: "white", icon: <SiOpenai /> },
+  langchain: { title: "LangChain", bg: "black", fg: "white", icon: <Link2 className="w-4 h-4" /> },
+
 };
 
 export type Project = {
@@ -718,6 +732,93 @@ const projects: Project[] = [
              <p className="font-mono text-xs text-emerald-600 dark:text-emerald-400 italic">
                "Evently marks a transition from building apps to architecting scalable systems, 
                where the infrastructure is just as important as the code."
+             </p>
+          </div>
+        </div>
+      );
+    },
+  },
+{
+    id: "askmeapolicy",
+    category: "Full Stack / Agents / RAG",
+    title: "AskMeAPolicy",
+    src: "/assets/projects-screenshots/askmeapolicy/1.png",
+    screenshots: ["1.png", "2.png", "3.png", "4.png", "5.png"],
+    github: "https://github.com/Mokhaled2004/Employee-Policy-Manual-Assistant/tree/main/hr-policy-assistant",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.js,
+      ],
+      backend: [
+        PROJECT_SKILLS.fastapi,
+        PROJECT_SKILLS.chroma,
+        PROJECT_SKILLS.langchain,
+      ],
+    },
+    get content() {
+      return (
+        <div className="space-y-6">
+          <TypographyP className="font-mono text-neutral-600 dark:text-neutral-400">
+            AskMeAPolicy is an intelligent HR compliance assistant that transforms static employee handbooks 
+            into interactive knowledge bases. Using RAG (Retrieval-Augmented Generation), it allows users to 
+            query complex policy documents and receive accurate, context-aware answers instantly.
+          </TypographyP>
+
+          <ProjectsLinks live={this.live} repo={this.github} />
+
+          <div className="my-8">
+            <SlideShow
+              images={[
+                `${BASE_PATH}/askmeapolicy/1.png`,
+                ...Array.from({ length: 5 }, (_, i) => `${BASE_PATH}/askmeapolicy/${i + 1}.png`)
+              ]}
+            />
+          </div>
+
+          <div className="flex items-center gap-3 mt-8">
+            <Cpu className="w-6 h-6 text-indigo-500" />
+            <TypographyH3 className="text-indigo-500">AI & RAG Architecture</TypographyH3>
+          </div>
+          
+          <ul className="space-y-4 font-mono text-sm text-neutral-600 dark:text-neutral-400">
+            <li className="flex items-start gap-3">
+              <Zap className="w-4 h-4 mt-1 text-indigo-500 shrink-0" />
+              <span><strong>Semantic Search:</strong> Leveraged ChromaDB and Sentence Transformers to perform vector-based retrieval, ensuring the AI finds the exact policy section needed.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Target className="w-4 h-4 mt-1 text-indigo-500 shrink-0" />
+              <span><strong>Contextual Chunking:</strong> Implemented RecursiveCharacterTextSplitter via LangChain to maintain document hierarchy and heading context during ingestion.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Layout className="w-4 h-4 mt-1 text-indigo-500 shrink-0" />
+              <span><strong>Streamlined UI:</strong> Built a custom Markdown-capable chat interface with Tailwind v4, supporting tables and nested lists for complex policy rendering.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Lock className="w-4 h-4 mt-1 text-indigo-500 shrink-0" />
+              <span><strong>Hallucination Guardrails:</strong> Configured strict system prompting to ensure the assistant only answers based on provided documents, maintaining high factuality.</span>
+            </li>
+          </ul>
+
+          <div className="flex items-center gap-3 mt-8">
+            <Terminal className="w-6 h-6 text-indigo-500" />
+            <TypographyH3 className="text-indigo-500">Technical Takeaway</TypographyH3>
+          </div>
+          
+          <p className="font-mono text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            The core challenge of AskMeAPolicy was managing the <strong>retrieval pipeline</strong>. 
+            By integrating <strong>FastAPI</strong> with <strong>LangChain</strong>, I moved beyond 
+            basic LLM prompting to building a system that understands specific organizational context. 
+            This project deepened my expertise in handling unstructured data and optimizing vector 
+            embeddings for real-world document auditing.
+          </p>
+
+          <div className="p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 mt-6 flex gap-4 items-start">
+             <ChevronRight className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+             <p className="font-mono text-xs text-indigo-600 dark:text-indigo-400 italic">
+               "AskMeAPolicy demonstrates the power of RAG in solving the information bottleneck, 
+               turning dry HR manuals into a dynamic, conversational resource."
              </p>
           </div>
         </div>
